@@ -1,2 +1,2 @@
 # Medico
-Online Consultation System
+Online Medical Consultation System
