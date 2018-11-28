@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Edit <%= doctor.name %></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/doctors/<%= doctor._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="doctor[name]" value="<%= doctor.name %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="doctor[image]" value="<%= doctor.image %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="doctor[description]" value="<%= doctor.description %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/doctors">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+
