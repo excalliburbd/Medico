@@ -16,7 +16,8 @@ var commentRoutes    = require("./routes/comments"),
     doctorRoutes     = require("./routes/doctors"),
     indexRoutes      = require("./routes/index");
     
-mongoose.connect("mongodb://localhost/medicothesite", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/medicothesite", { useNewUrlParser: true });
+mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds<dbnumber>.mlab.com:<dbnumber>/<dbname>", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
