@@ -1,53 +1,41 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    flash       = require("connect-flash"),
-    passport    = require("passport"),
-    LocalStrategy = require("passport-local"),
-    methodOverride = require("method-override"),
-    Doctor  = require("./models/doctor"),
-    Comment     = require("./models/comment"),
-    User        = require("./models/user")
-    //seedDB      = require("./seeds")
-    
-//requiring routes
-var commentRoutes    = require("./routes/comments"),
-    doctorRoutes     = require("./routes/doctors"),
-    indexRoutes      = require("./routes/index");
-    
-mongoose.connect("mongodb://localhost/medicothesite", { useNewUrlParser: true });
-app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
-app.use(flash());
-// seedDB(); //seed the database
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-// PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "mediconsite",
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-app.use(function(req, res, next){
-   res.locals.currentUser = req.user;
-   res.locals.error = req.flash("error");
-   res.locals.success = req.flash("success");
-   next();
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.use("/", indexRoutes);
-app.use("/doctors", doctorRoutes);
-app.use("/doctors/:id/comments", commentRoutes);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-
-app.listen(process.env.PORT, process.env.IP, function(){
-   console.log("The Medico Server Has Started!");
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
+
+module.exports = app;
