@@ -1,0 +1,64 @@
+{{!-- signup modal --}}
+<div class="modal medico-sign-up">
+  <div class="modal-background"></div>
+  <form class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sign Up</p>
+      <button class="delete close-sign-up" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" name="name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email input" value="" name="email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" placeholder="Text input" value="" name="username">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password" placeholder="Password" value="" name="password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-key"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" name="doctor">
+            Doctor
+          </label>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <input type="submit" class="button is-success"></input>
+      <button class="button close-sign-up">Cancel</button>
+    </footer>
+  </form>
+</div>
