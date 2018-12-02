@@ -1,3 +1,7 @@
 .medico-site-wrapper {
   min-height: calc(100vh - 14rem);
 }
+
+.medico-user-card {
+  width: 100%;
+}

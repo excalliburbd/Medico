@@ -1,7 +1,7 @@
 const knex = require('./connections');
 const bcrypt = require('bcryptjs');
 
-function createUser (user) {
+const createUser = user => {
   const {
     password,
     username,
@@ -24,7 +24,11 @@ function createUser (user) {
     .returning('*');
 }
 
+const getAllUser = () => 
+  knex('users').select('*')
+
 
 module.exports = {
-  createUser
+  createUser,
+  getAllUser
 }

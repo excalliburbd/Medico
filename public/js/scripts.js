@@ -22,7 +22,8 @@ $( document ).ready(function() {
           doctor: event.target.doctor.checked
         }
     }).done(function() {
-      $('.medico-sign-up').removeClass('is-active');      
+      $('.medico-sign-up').removeClass('is-active'); 
+      window.location.reload();   
     });
 
     return false;
