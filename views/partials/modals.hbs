@@ -62,3 +62,41 @@
     </footer>
   </form>
 </div>
+
+{{!-- signin modal --}}
+<div class="modal medico-sign-in {{#if showLogin}}is-active{{/if}}">
+  <div class="modal-background"></div>
+  <form class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sign In</p>
+      <button class="delete close-sign-in" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" placeholder="Text input" value="" name="username">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password" placeholder="Password" value="" name="password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-key"></i>
+          </span>
+        </div>
+      </div>
+      <footer class="modal-card-foot">
+          <input type="submit" class="button is-success"></input>
+          <button class="button close-sign-in">Cancel</button>
+        </footer>
+  </form>
+</div>

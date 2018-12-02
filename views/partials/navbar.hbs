@@ -15,12 +15,18 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary medico-sign-up-button">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light medico-login-button">
-            Log in
-          </a>
+          {{#if user}}
+            <a class="button is-danger medico-sign-out-button">
+              <strong>Sign Out</strong>
+            </a>
+          {{else}}
+            <a class="button is-primary medico-sign-up-button">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light medico-sign-in-button">
+              Log in
+            </a>
+          {{/if}}
         </div>
       </div>
     </div>

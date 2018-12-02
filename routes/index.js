@@ -6,8 +6,23 @@ const user = require('../db/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  user.getAllUser().then(
+  user.getAllUser()
+  .then(users => users.filter( user => {
+    if (!req.user) return true;
+
+    if (req.user.doctor) {
+      if (user.doctor) return false;
+    } else {
+      if (!user.doctor) return false;
+    }
+
+    if (user.id === req.user.id) return false;
+
+    return true;
+  } )) 
+  .then(
     users => {
+      
       const chunks = [];
 
       for(let i=0; i<users.length; i+=3) {
@@ -15,7 +30,8 @@ router.get('/', function(req, res, next) {
       }
 
       res.render('index', {
-        userRow: chunks
+        userRow: chunks,
+        user: req.user
       });
     }
   )
